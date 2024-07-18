@@ -1,3 +1,6 @@
+import * as price from "./commands/price.js";
+import * as ping from "./commands/ping.js";
+
 require("dotenv").config();
 
 const token = process.env.token;
@@ -12,9 +15,16 @@ client.on("ready", async () => {
 
 client.on("messageCreate", (message) => {
   if (message.author.bot) return false;
-  if (!message.content.includes(userID)) return false;
-  message.channel.send("ok");
-  console.log(message.content);
+  let content = message.content;
+  if (!content.includes(userID)) return false;
+  if (content.includes("price")) {
+    price.go(message);
+    return;
+  }
+  if (content.includes("ping")) {
+    ping.go(message);
+    return;
+  }
 });
 
 client.login(token);
