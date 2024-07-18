@@ -1,5 +1,6 @@
 import * as prices from "./commands/prices.js";
 import * as ping from "./commands/ping.js";
+import * as togglestatus from "./commands/togglestatus.js";
 
 require("dotenv").config();
 
@@ -23,6 +24,10 @@ client.on("messageCreate", (message) => {
   }
   if (content.includes(ping.command_name)) {
     ping.go(message);
+    return;
+  }
+  if (content.includes(togglestatus.command_name)) {
+    togglestatus.go(message, client);
     return;
   }
 });
