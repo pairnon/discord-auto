@@ -50,4 +50,5 @@ export async function go(message) {
     let data = await response.json();
     message.channel.send(`## ${urls[i][1]} ${urls[i][0]} Price: \`$${data.USD.toString()}\``);
   }
+  message.reply("Done!");
 }
