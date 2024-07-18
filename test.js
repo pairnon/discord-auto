@@ -1,4 +1,4 @@
-import * as price from "./commands/price.js";
+import * as prices from "./commands/prices.js";
 import * as ping from "./commands/ping.js";
 
 require("dotenv").config();
@@ -17,8 +17,8 @@ client.on("messageCreate", (message) => {
   if (message.author.bot) return false;
   let content = message.content;
   if (!content.includes(userID)) return false;
-  if (content.includes("price")) {
-    price.go(message);
+  if (content.includes("prices")) {
+    prices.go(message);
     return;
   }
   if (content.includes("ping")) {
