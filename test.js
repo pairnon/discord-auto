@@ -17,11 +17,11 @@ client.on("messageCreate", (message) => {
   if (message.author.bot) return false;
   let content = message.content;
   if (!content.includes(userID)) return false;
-  if (content.includes("prices")) {
+  if (content.includes(prices.command_name)) {
     prices.go(message);
     return;
   }
-  if (content.includes("ping")) {
+  if (content.includes(ping.command_name)) {
     ping.go(message);
     return;
   }
