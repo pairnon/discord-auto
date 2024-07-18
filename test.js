@@ -1,6 +1,6 @@
 import * as prices from "./commands/prices.js";
 import * as ping from "./commands/ping.js";
-import * as togglestatus from "./commands/togglestatus.js";
+import * as showonline from "./commands/showonline.js";
 
 require("dotenv").config();
 
@@ -12,6 +12,7 @@ const client = new Client();
 
 client.on("ready", async () => {
   console.log(`${client.user.username} is ready!`);
+  client.user.setStatus('invisible');
 });
 
 client.on("messageCreate", (message) => {
@@ -26,8 +27,8 @@ client.on("messageCreate", (message) => {
     ping.go(message);
     return;
   }
-  if (content.includes(togglestatus.command_name)) {
-    togglestatus.go(message, client);
+  if (content.includes(showonline.command_name)) {
+    showonline.go(message, client);
     return;
   }
 });
