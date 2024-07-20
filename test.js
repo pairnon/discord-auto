@@ -4,8 +4,10 @@ import * as showonline from "./commands/showonline.js";
 
 require("dotenv").config();
 
-const token = process.env.token;
-const userID = process.env.user_id;
+const clientToken = process.env.token;
+const clientUserID = process.env.user_id;
+
+const prefix = `<@${clientUserID}>`;
 
 const { Client } = require("discord.js-selfbot-v13");
 const client = new Client();
@@ -16,26 +18,30 @@ client.on("ready", async () => {
 });
 
 client.on("messageCreate", (message) => {
-  if (message.author.bot) return false;
-  let content = message.content;
-  if (!content.includes(userID)) return false;
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
+
   let executorUserID = message.author.id;
   let executorUsername = message.author.username;
-  if (content.includes(prices.command_name)) {
+
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+
+  if (command == prices.command_name) {
     console.log(`${executorUserID} (@${executorUsername}) executed a command.`);
     prices.go(message);
     return;
   }
-  if (content.includes(ping.command_name)) {
+  if (command == ping.command_name) {
     console.log(`${executorUserID} (@${executorUsername}) executed a command.`);
     ping.go(message);
     return;
   }
-  if (content.includes(showonline.command_name)) {
+  if (command == showonline.command_name) {
     console.log(`${executorUserID} (@${executorUsername}) executed a command.`);
     showonline.go(message, client);
     return;
   }
 });
 
-client.login(token);
+client.login(clientToken);
