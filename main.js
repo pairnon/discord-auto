@@ -1,6 +1,7 @@
 import * as prices from "./commands/prices.js";
 import * as ping from "./commands/ping.js";
 import * as showonline from "./commands/showonline.js";
+import * as setstatus from "./commands/setstatus.js";
 import * as dm from "./commands/dm.js";
 
 require("dotenv").config();
@@ -47,6 +48,12 @@ client.on("messageCreate", (message) => {
       );
       showonline.go(message, args, client);
       return;
+    case setstatus.command_name:
+      console.log(
+        `${executorUserID} (@${executorUsername}) executed command ${setstatus.command_name}.`,
+      );
+      setstatus.go(message, args, client);
+      return;
     case dm.command_name:
       console.log(
         `${executorUserID} (@${executorUsername}) executed command ${dm.command_name}.`,
@@ -54,9 +61,9 @@ client.on("messageCreate", (message) => {
       dm.go(message, args, client);
       return;
     default:
-    console.log(
-      `${executorUserID} (@${executorUsername}) mentioned the client without a specified command.`,
-    );
+      console.log(
+        `${executorUserID} (@${executorUsername}) mentioned the client without a specified command.`,
+      );
   }
 });
 
