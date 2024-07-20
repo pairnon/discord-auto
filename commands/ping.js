@@ -2,5 +2,5 @@
 export const command_name = "ping";
 
 export function go(message, args) {
-  message.reply("pong!");
+  message.reply("### :white_check_mark: pong!");
 }
