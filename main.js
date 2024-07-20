@@ -1,6 +1,5 @@
 import * as prices from "./commands/prices.js";
 import * as ping from "./commands/ping.js";
-import * as showonline from "./commands/showonline.js";
 import * as setstatus from "./commands/setstatus.js";
 import * as dm from "./commands/dm.js";
 
@@ -41,12 +40,6 @@ client.on("messageCreate", (message) => {
         `${executorUserID} (@${executorUsername}) executed command ${ping.command_name}.`,
       );
       ping.go(message, args);
-      return;
-    case showonline.command_name:
-      console.log(
-        `${executorUserID} (@${executorUsername}) executed command ${showonline.command_name}.`,
-      );
-      showonline.go(message, args, client);
       return;
     case setstatus.command_name:
       console.log(
