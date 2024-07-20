@@ -2,6 +2,7 @@ import * as prices from "./commands/prices.js";
 import * as ping from "./commands/ping.js";
 import * as setstatus from "./commands/setstatus.js";
 import * as dm from "./commands/dm.js";
+import * as timer from "./commands/timer.js";
 
 require("dotenv").config();
 
@@ -52,6 +53,12 @@ client.on("messageCreate", (message) => {
         `${executorUserID} (@${executorUsername}) executed command ${dm.command_name}.`,
       );
       dm.go(message, args, client);
+      return;
+    case timer.command_name:
+      console.log(
+        `${executorUserID} (@${executorUsername}) executed command ${timer.command_name}.`,
+      );
+      timer.go(message, args, client);
       return;
     default:
       console.log(
