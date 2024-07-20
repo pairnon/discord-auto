@@ -44,7 +44,7 @@ const urls = [btc, eth, bnb, sol, xrp, bch, doge, ltc];
 
 export const command_name = "prices";
 
-export async function go(message) {
+export async function go(message, args) {
   for (let i = 0; i < urls.length; i++) {
     const response = await fetch(urls[i][2]);
     let data = await response.json();

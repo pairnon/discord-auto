@@ -1,6 +1,6 @@
 
 export const command_name = "ping";
 
-export function go(message) {
+export function go(message, args) {
   message.reply("pong!");
 }

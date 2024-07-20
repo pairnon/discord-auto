@@ -1,6 +1,7 @@
 import * as prices from "./commands/prices.js";
 import * as ping from "./commands/ping.js";
 import * as showonline from "./commands/showonline.js";
+import * as dm from "./commands/dm.js";
 
 require("dotenv").config();
 
@@ -29,17 +30,22 @@ client.on("messageCreate", (message) => {
 
   if (command == prices.command_name) {
     console.log(`${executorUserID} (@${executorUsername}) executed a command.`);
-    prices.go(message);
+    prices.go(message, args);
     return;
   }
   if (command == ping.command_name) {
     console.log(`${executorUserID} (@${executorUsername}) executed a command.`);
-    ping.go(message);
+    ping.go(message, args);
     return;
   }
   if (command == showonline.command_name) {
     console.log(`${executorUserID} (@${executorUsername}) executed a command.`);
-    showonline.go(message, client);
+    showonline.go(message, args, client);
+    return;
+  }
+  if (command == dm.command_name) {
+    console.log(`${executorUserID} (@${executorUsername}) executed a command.`);
+    dm.go(message, args, client);
     return;
   }
 });
