@@ -28,25 +28,35 @@ client.on("messageCreate", (message) => {
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
-  if (command == prices.command_name) {
-    console.log(`${executorUserID} (@${executorUsername}) executed a command.`);
-    prices.go(message, args);
-    return;
-  }
-  if (command == ping.command_name) {
-    console.log(`${executorUserID} (@${executorUsername}) executed a command.`);
-    ping.go(message, args);
-    return;
-  }
-  if (command == showonline.command_name) {
-    console.log(`${executorUserID} (@${executorUsername}) executed a command.`);
-    showonline.go(message, args, client);
-    return;
-  }
-  if (command == dm.command_name) {
-    console.log(`${executorUserID} (@${executorUsername}) executed a command.`);
-    dm.go(message, args, client);
-    return;
+  switch (command) {
+    case prices.command_name:
+      console.log(
+        `${executorUserID} (@${executorUsername}) executed command ${prices.command_name}.`,
+      );
+      prices.go(message, args);
+      return;
+    case ping.command_name:
+      console.log(
+        `${executorUserID} (@${executorUsername}) executed command ${ping.command_name}.`,
+      );
+      ping.go(message, args);
+      return;
+    case showonline.command_name:
+      console.log(
+        `${executorUserID} (@${executorUsername}) executed command ${showonline.command_name}.`,
+      );
+      showonline.go(message, args, client);
+      return;
+    case dm.command_name:
+      console.log(
+        `${executorUserID} (@${executorUsername}) executed command ${dm.command_name}.`,
+      );
+      dm.go(message, args, client);
+      return;
+    default:
+    console.log(
+      `${executorUserID} (@${executorUsername}) mentioned the client without a specified command.`,
+    );
   }
 });
 
