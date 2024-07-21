@@ -9,14 +9,14 @@ require("dotenv").config();
 const clientToken = process.env.token;
 
 let clientUserID = 0;
-
-const prefix = `<@${clientUserID}>`;
+let prefix = "";
 
 const { Client } = require("discord.js-selfbot-v13");
 const client = new Client();
 
 client.on("ready", async () => {
   clientUserID = client.user.id;
+  prefix = `<@${clientUserID}>`;
   console.log(`@${client.user.username} (${clientUserID}) is ready!`);
   client.user.setStatus("invisible");
 });
