@@ -7,7 +7,8 @@ import * as timer from "./commands/timer.js";
 require("dotenv").config();
 
 const clientToken = process.env.token;
-const clientUserID = process.env.user_id;
+
+let clientUserID = 0;
 
 const prefix = `<@${clientUserID}>`;
 
@@ -15,7 +16,8 @@ const { Client } = require("discord.js-selfbot-v13");
 const client = new Client();
 
 client.on("ready", async () => {
-  console.log(`${client.user.username} is ready!`);
+  clientUserID = client.user.id;
+  console.log(`@${client.user.username} (${clientUserID}) is ready!`);
   client.user.setStatus("invisible");
 });
 
