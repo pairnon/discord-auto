@@ -16,6 +16,7 @@ export const commands = [
 require("dotenv").config();
 
 const clientToken = process.env.token;
+const adminID = process.env.admin_id;
 
 let clientUserID = 0;
 let prefix = "";
@@ -36,6 +37,13 @@ client.on("messageCreate", (message) => {
 
   let executorUserID = message.author.id;
   let executorUsername = message.author.username;
+
+  if (executorUserID != adminID) {
+    console.log(
+      `${executorUserID} (@${executorUsername}) mentioned the client but is not an administrator.`,
+    );
+    return;
+  }
 
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
