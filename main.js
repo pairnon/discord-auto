@@ -1,8 +1,17 @@
-import * as prices from "./commands/prices.js";
 import * as ping from "./commands/ping.js";
+import * as prices from "./commands/prices.js";
 import * as setstatus from "./commands/setstatus.js";
 import * as dm from "./commands/dm.js";
 import * as timer from "./commands/timer.js";
+import * as help from "./commands/help.js";
+
+export const commands = [
+  ping.command_name,
+  prices.command_name,
+  setstatus.command_name,
+  dm.command_name,
+  timer.command_name,
+];
 
 require("dotenv").config();
 
@@ -61,6 +70,12 @@ client.on("messageCreate", (message) => {
         `${executorUserID} (@${executorUsername}) executed command ${timer.command_name}.`,
       );
       timer.go(message, args, client);
+      return;
+    case help.command_name:
+      console.log(
+        `${executorUserID} (@${executorUsername}) executed command ${help.command_name}.`,
+      );
+      help.go(message, args);
       return;
     default:
       console.log(
