@@ -34,21 +34,23 @@ const doge = [
   "DOGE",
   ":dog:",
   "https://min-api.cryptocompare.com/data/price?fsym=DOGE&tsyms=USD",
-]
+];
 const ltc = [
   "LTC",
   ":regional_indicator_l:",
   "https://min-api.cryptocompare.com/data/price?fsym=LTC&tsyms=USD",
-]
+];
 const urls = [btc, eth, bnb, sol, xrp, bch, doge, ltc];
 
 export const command_name = "prices";
 
 export async function go(message, args) {
+  let responseMessage = ``;
   for (let i = 0; i < urls.length; i++) {
     const response = await fetch(urls[i][2]);
     let data = await response.json();
-    message.channel.send(`## ${urls[i][1]} ${urls[i][0]} Price: \`$${data.USD.toString()}\``);
+    responseMessage += `## ${urls[i][1]} ${urls[i][0]} Price: \`$${data.USD.toString()}\`\n`;
   }
-  message.reply("### :white_check_mark: Done!");
+  responseMessage += `### :white_check_mark: Done!`;
+  message.reply(responseMessage);
 }
