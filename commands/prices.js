@@ -51,6 +51,17 @@ export async function go(message, args) {
     let data = await response.json();
     responseMessage += `## ${urls[i][1]} ${urls[i][0]} Price: \`$${data.USD.toString()}\`\n`;
   }
-  responseMessage += `### :white_check_mark: Done!`;
+  responseMessage += `\`Data fetched ${getFormattedDateTime()} UTC\``;
   message.reply(responseMessage);
+}
+
+function getFormattedDateTime() {
+  let date = new Date();
+  let utcYear = date.getUTCFullYear();
+  let utcMonth = date.getUTCMonth();
+  let utcDay = date.getUTCDate();
+  let utcHours = date.getUTCHours();
+  let utcMinutes = date.getUTCMinutes();
+  let utcSeconds = date.getSeconds();
+  return `${utcYear}-${utcMonth}-${utcDay} ${utcHours}:${utcMinutes}:${utcSeconds}`;
 }
