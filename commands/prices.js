@@ -1,13 +1,13 @@
 const fetch = require("node-fetch");
 
-const btc = ["BTC", ":orange_circle:"];
-const eth = ["ETH", ":blue_circle:"];
-const bnb = ["BNB", ":yellow_circle:"];
-const sol = ["SOL", ":purple_circle:"];
-const xrp = ["XRP", ":black_circle:"];
-const bch = ["BCH", ":green_circle:"];
-const doge = ["DOGE", ":dog:"];
-const ltc = ["LTC", ":regional_indicator_l:"];
+const btc = ":orange_circle:";
+const eth = ":blue_circle:";
+const bnb = ":yellow_circle:";
+const sol = ":purple_circle:";
+const xrp = ":black_circle:";
+const bch = ":green_circle:";
+const doge = ":dog:";
+const ltc = ":regional_indicator_l:";
 const symbols = [btc, eth, bnb, sol, xrp, bch, doge, ltc];
 
 const pricesURL =
@@ -22,7 +22,7 @@ export async function go(message, args) {
   const keysArray = Object.keys(data);
   const valuesArray = Object.values(data);
   for (let i = 0; i < keysArray.length; i++) {
-    responseMessage += `## ${symbols[i][1]} ${keysArray[i]} Price: \`$${valuesArray[i].USD.toString()}\`\n`;
+    responseMessage += `## ${symbols[i]} ${keysArray[i]} Price: \`$${valuesArray[i].USD.toString()}\`\n`;
   }
   responseMessage += `\`Data fetched ${getFormattedDateTime()} UTC\``;
   message.reply(responseMessage);
