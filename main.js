@@ -1,3 +1,5 @@
+import * as logger from "./logger.js";
+
 import * as ping from "./commands/ping.js";
 import * as prices from "./commands/prices.js";
 import * as setstatus from "./commands/setstatus.js";
@@ -27,7 +29,7 @@ const client = new Client();
 client.on("ready", async () => {
   clientUserID = client.user.id;
   prefix = `<@${clientUserID}>`;
-  console.log(`@${client.user.username} (${clientUserID}) is ready!`);
+  logger.success(`@${client.user.username} (${clientUserID}) is ready!`);
   client.user.setStatus("invisible");
 });
 
@@ -39,7 +41,7 @@ client.on("messageCreate", (message) => {
   let executorUsername = message.author.username;
 
   if (executorUserID != adminID) {
-    console.log(
+    logger.warn(
       `${executorUserID} (@${executorUsername}) mentioned the client but is not an administrator.`,
     );
     return;
@@ -50,43 +52,43 @@ client.on("messageCreate", (message) => {
 
   switch (command) {
     case prices.command_name:
-      console.log(
+      logger.log(
         `${executorUserID} (@${executorUsername}) executed command ${prices.command_name}.`,
       );
       prices.go(message, args);
       return;
     case ping.command_name:
-      console.log(
+      logger.log(
         `${executorUserID} (@${executorUsername}) executed command ${ping.command_name}.`,
       );
       ping.go(message, args);
       return;
     case setstatus.command_name:
-      console.log(
+      logger.log(
         `${executorUserID} (@${executorUsername}) executed command ${setstatus.command_name}.`,
       );
       setstatus.go(message, args, client);
       return;
     case dm.command_name:
-      console.log(
+      logger.log(
         `${executorUserID} (@${executorUsername}) executed command ${dm.command_name}.`,
       );
       dm.go(message, args, client);
       return;
     case timer.command_name:
-      console.log(
+      logger.log(
         `${executorUserID} (@${executorUsername}) executed command ${timer.command_name}.`,
       );
       timer.go(message, args, client);
       return;
     case help.command_name:
-      console.log(
+      logger.log(
         `${executorUserID} (@${executorUsername}) executed command ${help.command_name}.`,
       );
       help.go(message, args);
       return;
     default:
-      console.log(
+      logger.warn(
         `${executorUserID} (@${executorUsername}) mentioned the client without a specified command.`,
       );
   }
