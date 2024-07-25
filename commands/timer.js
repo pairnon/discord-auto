@@ -1,10 +1,17 @@
 export const command_name = "timer";
 
-const usage = "timer <duration> <s / m>"
+const usage = "timer <duration> <s / m>";
 
 export async function go(message, args, client) {
-  const time = args[0];
+  let time = 0;
   let unit = undefined;
+
+  if (args[0] == undefined || !isValidDuration(args[0])) {
+    message.reply(`### :no_entry_sign: Usage: ${usage}`);
+    return;
+  }
+
+  time = args[0];
 
   if (args[1] != undefined) {
     unit = args[1];
@@ -52,6 +59,11 @@ async function runSecondsTimer(time, message) {
     message.reply(`# :hourglass: ${time} seconds is up!`);
     return;
   }
+}
+
+function isValidDuration(input) {
+  const trimmedStr = (" " + input).trim(); // Trim leading/trailing whitespaces
+  return !isNaN(parseFloat(trimmedStr)) && isFinite(trimmedStr) && /^\d+$/.test(trimmedStr);
 }
 
 function sleep(ms) {
