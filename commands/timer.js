@@ -1,5 +1,7 @@
 export const command_name = "timer";
 
+const usage = "timer <duration> <s / m>"
+
 export async function go(message, args, client) {
   const time = args[0];
   let unit = undefined;
@@ -16,22 +18,25 @@ export async function go(message, args, client) {
         await runSecondsTimer(time, message);
         return;
       case `m`:
-        if (time == 1) {
-          message.reply(
-            `# :hourglass_flowing_sand: Timer set for ${time} minute`,
-          );
-          await sleep(time * 1000 * 60);
-          message.reply(`# :hourglass: ${time} minute is up!`);
-          return;
-        } else {
-          message.reply(
-            `# :hourglass_flowing_sand: Timer set for ${time} minutes`,
-          );
-          await sleep(time * 1000 * 60);
-          message.reply(`# :hourglass: ${time} minutes is up!`);
-          return;
-        }
+        runMinutesTimer(time, message);
+        return;
+      default:
+        message.reply(`### :no_entry_sign: Usage: ${usage}`);
     }
+  }
+}
+
+async function runMinutesTimer(time, message) {
+  if (time == 1) {
+    message.reply(`# :hourglass_flowing_sand: Timer set for ${time} minute`);
+    await sleep(time * 1000 * 60);
+    message.reply(`# :hourglass: ${time} minute is up!`);
+    return;
+  } else {
+    message.reply(`# :hourglass_flowing_sand: Timer set for ${time} minutes`);
+    await sleep(time * 1000 * 60);
+    message.reply(`# :hourglass: ${time} minutes is up!`);
+    return;
   }
 }
 
