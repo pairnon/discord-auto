@@ -1,3 +1,5 @@
+import * as time from "../time.js";
+
 const fetch = require("node-fetch");
 
 const btc = ":orange_circle:";
@@ -24,17 +26,6 @@ export async function go(message, args) {
   for (let i = 0; i < keysArray.length; i++) {
     responseMessage += `## ${symbols[i]} ${keysArray[i]} Price: \`$${valuesArray[i].USD.toString()}\`\n`;
   }
-  responseMessage += `\`Data fetched ${getFormattedDateTime()} UTC\``;
+  responseMessage += `\`Data fetched ${time.getFormattedDateTime()} UTC\``;
   message.reply(responseMessage);
-}
-
-function getFormattedDateTime() {
-  let date = new Date();
-  let utcYear = date.getUTCFullYear();
-  let utcMonth = date.getUTCMonth();
-  let utcDay = date.getUTCDate();
-  let utcHours = date.getUTCHours();
-  let utcMinutes = date.getUTCMinutes();
-  let utcSeconds = date.getSeconds();
-  return `${utcYear}-${utcMonth}-${utcDay} ${utcHours}:${utcMinutes}:${utcSeconds}`;
 }
