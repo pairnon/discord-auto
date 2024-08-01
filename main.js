@@ -5,6 +5,7 @@ import * as prices from "./commands/prices.js";
 import * as setstatus from "./commands/setstatus.js";
 import * as dm from "./commands/dm.js";
 import * as timer from "./commands/timer.js";
+import * as ip from "./commands/ip.js";
 import * as help from "./commands/help.js";
 
 export const commands = [
@@ -80,6 +81,12 @@ client.on("messageCreate", (message) => {
         `${executorUserID} (@${executorUsername}) executed command ${timer.command_name}.`,
       );
       timer.go(message, args, client);
+      return;
+    case ip.command_name:
+      logger.log(
+        `${executorUserID} (@${executorUsername}) executed command ${ip.command_name}.`,
+      );
+      ip.go(message, args);
       return;
     case help.command_name:
       logger.log(
