@@ -1,6 +1,6 @@
 import * as logger from "../logger.js";
 
-export const command_name = "del";
+export const command_name = "bulkdelete";
 
 export async function go(message, args, client) {
   const channelID = args[0];

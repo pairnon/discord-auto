@@ -6,7 +6,7 @@ import * as setstatus from "./commands/setstatus.js";
 import * as dm from "./commands/dm.js";
 import * as timer from "./commands/timer.js";
 import * as ip from "./commands/ip.js";
-import * as del from "./commands/del.js";
+import * as bulkdelete from "./commands/bulkdelete.js";
 import * as help from "./commands/help.js";
 
 export const commands = [
@@ -89,11 +89,11 @@ client.on("messageCreate", (message) => {
       );
       ip.go(message, args);
       return;
-    case del.command_name:
+    case bulkdelete.command_name:
       logger.log(
-        `${executorUserID} (@${executorUsername}) executed command ${del.command_name}.`,
+        `${executorUserID} (@${executorUsername}) executed command ${bulkdelete.command_name}.`,
       );
-      del.go(message, args, client);
+      bulkdelete.go(message, args, client);
       return;
     case help.command_name:
       logger.log(
