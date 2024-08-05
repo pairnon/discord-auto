@@ -24,8 +24,8 @@ export async function go(message, args, client) {
       }
     }
   }
-  message.reply(`Finished bulk delete of channel ${channel.id}`);
-  logger.success(`Finished bulk delete of channel ${channel.id}`);
+  message.reply(`Finished bulk deletion of channel ${channel.id}`);
+  logger.success(`Finished bulk deletion of channel ${channel.id}`);
 }
 
 // https://stackoverflow.com/a/71620968
