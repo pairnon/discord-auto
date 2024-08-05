@@ -1,20 +1,23 @@
 import * as logger from "./logger.js";
 
+import * as bulkdelete from "./commands/bulkdelete.js";
+import * as dm from "./commands/dm.js";
+import * as help from "./commands/help.js";
+import * as ip from "./commands/ip.js";
 import * as ping from "./commands/ping.js";
 import * as prices from "./commands/prices.js";
 import * as setstatus from "./commands/setstatus.js";
-import * as dm from "./commands/dm.js";
 import * as timer from "./commands/timer.js";
-import * as ip from "./commands/ip.js";
-import * as bulkdelete from "./commands/bulkdelete.js";
-import * as help from "./commands/help.js";
 
 export const commands = [
+  bulkdelete.command_name,
+  dm.command_name,
+  help.command_name,
+  ip.command_name,
   ping.command_name,
   prices.command_name,
   setstatus.command_name,
-  dm.command_name,
-  timer.command_name,
+  timer.command_name
 ];
 
 require("dotenv").config();
