@@ -4,6 +4,7 @@ import * as bulkdelete from "./commands/bulkdelete.js";
 import * as dm from "./commands/dm.js";
 import * as help from "./commands/help.js";
 import * as ip from "./commands/ip.js";
+import * as nodelookup from "./commands/nodelookup.js";
 import * as ping from "./commands/ping.js";
 import * as prices from "./commands/prices.js";
 import * as setstatus from "./commands/setstatus.js";
@@ -14,10 +15,11 @@ export const commands = [
   dm.command_name,
   help.command_name,
   ip.command_name,
+  nodelookup.command_name,
   ping.command_name,
   prices.command_name,
   setstatus.command_name,
-  timer.command_name
+  timer.command_name,
 ];
 
 require("dotenv").config();
@@ -103,6 +105,12 @@ client.on("messageCreate", (message) => {
         `${executorUserID} (@${executorUsername}) executed command ${help.command_name}.`,
       );
       help.go(message, args);
+      return;
+    case nodelookup.command_name:
+      logger.log(
+        `${executorUserID} (@${executorUsername}) executed command ${nodelookup.command_name}.`,
+      );
+      nodelookup.go(message, args);
       return;
     default:
       logger.warn(
